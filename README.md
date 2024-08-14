@@ -2,19 +2,40 @@
 
 Use the below in your sample project to compile and check the chat bot library uploaded in github.
 
+1.import implementation in build.gradle(app) file
+implementation("com.github.SSGChennai:ChatBOT:main-SNAPSHOT")
 
-1.	In gradle.properties file paste the below line:
-authToken=jp_7ktlteibdj69kfkdg2rm9ash2i
+2.add permissions in AndroidManifest.xml file
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.SOME_PERMISSION" />
+<uses-permission android:name="android.permission.QUERY" />
 
-2.	In project gradle file past the highlighted lines inside repository as given below,
+3.call package in AndroidManifest.xml file
+<queries>
+        <package android:name="herbiebot.sunsmart.com.bot" />
+</queries>
+
+4.add maven
+
 allprojects {
-    repositories {
-       maven {
-            url "https://jitpack.io"
-            credentials { username authToken }
-        }
-    }
+repositories {
+maven {
+url = uri("https://jitpack.io")
+}
+}
 }
 
-3.	In app gradle file past the below line to access chat bot library from github
-implementation 'com.github.cbdmobile:chatbot-android:1.6'
+5.call where evey want function give blow
+import android.content.Intent;
+import android.os.Bundle;
+import com.google.android.material.snackbar.Snackbar;
+
+Intent intent = getPackageManager().getLaunchIntentForPackage("herbiebot.sunsmart.com.bot");
+if (intent != null) {
+startActivity(intent);
+} else {
+Snackbar.make(view, "Not able to access package", Snackbar.LENGTH_LONG)
+.setAnchorView(R.id.fab)
+.setAction("Action", null).show();
+}
+

@@ -9,6 +9,7 @@ android {
         targetSdkVersion 31
 //        versionCode 1
 //        versionName "1.0"
+        version = "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
